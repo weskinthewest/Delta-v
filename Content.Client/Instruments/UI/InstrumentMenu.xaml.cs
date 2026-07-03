@@ -48,7 +48,7 @@ namespace Content.Client.Instruments.UI
             PlaybackSlider.OnValueChanged += PlaybackSliderSeek;
             PlaybackSlider.OnKeyBindUp += PlaybackSliderKeyUp;
 
-            MinSize = SetSize = new Vector2(400, 150);
+            MinSize = SetSize = new Vector2(400, 300);
         }
 
         public void SetInstrument(Entity<InstrumentComponent> entity)
@@ -61,11 +61,13 @@ namespace Content.Client.Instruments.UI
             ChannelsButton.Disabled = !component.IsRendererAlive;
             StopButton.Disabled = !component.IsMidiOpen;
             PlaybackSlider.MouseFilter = component.IsMidiOpen ? MouseFilterMode.Pass : MouseFilterMode.Ignore;
+            Visualizer.AttachInstrument(component);
         }
 
         public void RemoveInstrument(InstrumentComponent component)
         {
             component.OnMidiPlaybackEnded -= InstrumentOnMidiPlaybackEnded;
+            Visualizer.AttachInstrument(null);
         }
 
         public void SetMIDI(bool available)

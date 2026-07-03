@@ -8,6 +8,8 @@ namespace Content.Client.Instruments;
 public sealed partial class InstrumentComponent : SharedInstrumentComponent
 {
     public event Action? OnMidiPlaybackEnded;
+    public event Action<RobustMidiEvent>? OnMidiNotePlayed;
+    public event Action? OnMidiRendererReset;
 
     [ViewVariables]
     public IMidiRenderer? Renderer;
@@ -67,4 +69,6 @@ public sealed partial class InstrumentComponent : SharedInstrumentComponent
     public int PlayerTick => Renderer?.PlayerTick ?? 0;
 
     public void PlaybackEndedInvoke() => OnMidiPlaybackEnded?.Invoke();
+    public void NotifyMidiNotePlayed(RobustMidiEvent ev) => OnMidiNotePlayed?.Invoke(ev);
+    public void NotifyMidiRendererReset() => OnMidiRendererReset?.Invoke();
 }

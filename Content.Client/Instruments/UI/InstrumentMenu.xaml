@@ -1,6 +1,13 @@
 <DefaultWindow xmlns="https://spacestation14.io"
-            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
+            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+            xmlns:ui="clr-namespace:Content.Client.Instruments.UI">
     <BoxContainer Orientation="Vertical" SeparationOverride="5">
+        <PanelContainer VerticalExpand="True" MinSize="0 130">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#0b0b0b" />
+            </PanelContainer.PanelOverride>
+            <ui:InstrumentVisualizerControl Name="Visualizer" />
+        </PanelContainer>
         <BoxContainer Orientation="Horizontal" VerticalExpand="True">
             <Button Name="InputButton" ToggleMode="True" Text="{Loc 'instruments-component-menu-input-button'}" TextAlign="Center"
                     HorizontalExpand="True" SizeFlagsStretchRatio="1" />
